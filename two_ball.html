@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html> 
+  <head> 
+    <meta charset ="utf-8"/ > 
+  </head>
+  <body> 
+     <script src="https://d3js.org/d3.v4.min.js"></script>
+     <script type="text/javascript">
+       var width = 960,height = 700;
+ 
+       var svg = d3.select("body")
+                   .append("svg")
+                   .attr("width", width)
+                   .attr("height", height)
+                   .attr("id", "visualization")
+                   .attr("xmlns", "http://www.w3.org/2000/svg");
+       var data = [{agc:1,x:100,y:200,time:0},
+                   {agc:1,x:200,y:600,time:2},
+                   {agc:2,x:300,y:300,time:5},
+                   {agc:2,x:100,y:200,time:1}];
+       
+       function move(x,y,time) {
+          var circles = this.transition().duration(1000*time);
+          circles.attr('cx', x)
+                 .attr('cy', y)
+          return circles;
+       }
+       var circles=[];
+       var agc=[];
+       for(i=0;i<data.length;i++){
+           if(agc.indexOf(data[i].agc)==-1){
+             agc.push(data[i].agc);
+             circles.push(data[i].agc);
+             circles[data[i].agc] = svg.append('circle')
+                                       .attr('cx', data[i].x)
+                                       .attr('cy', data[i].y)
+                                       .attr('r', 15)
+                                       .attr("fill", "green");
+         }
+          else {          
+              circles[data[i].agc]=move.call(circles[data[i].agc],
+                                 data[i].x,data[i].y,data[i].time);
+        }        
+       }
+  </script>
+</body>
+</html>
