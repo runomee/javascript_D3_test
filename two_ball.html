@@ -26,19 +26,19 @@
           return circles;
        }
        var circles=[];
-       var agc=[];
+       var ball=[];
        for(i=0;i<data.length;i++){
-           if(agc.indexOf(data[i].agc)==-1){
-             agc.push(data[i].agc);
-             circles.push(data[i].agc);
-             circles[data[i].agc] = svg.append('circle')
+           if(ball.indexOf(data[i].ball)==-1){
+             ball.push(data[i].ball);
+             circles.push(data[i].ball);
+             circles[data[i].ball] = svg.append('circle')
                                        .attr('cx', data[i].x)
                                        .attr('cy', data[i].y)
                                        .attr('r', 15)
                                        .attr("fill", "green");
          }
           else {          
-              circles[data[i].agc]=move.call(circles[data[i].ball],
+              circles[data[i].ball]=move.call(circles[data[i].ball],
                                  data[i].x,data[i].y,data[i].time);
         }        
        }
