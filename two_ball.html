@@ -14,10 +14,10 @@
                    .attr("height", height)
                    .attr("id", "visualization")
                    .attr("xmlns", "http://www.w3.org/2000/svg");
-       var data = [{agc:1,x:100,y:200,time:0},
-                   {agc:1,x:200,y:600,time:2},
-                   {agc:2,x:300,y:300,time:5},
-                   {agc:2,x:100,y:200,time:1}];
+       var data = [{ball:1,x:100,y:200,time:0},
+                   {ball:1,x:200,y:600,time:2},
+                   {ball:2,x:300,y:300,time:5},
+                   {ball:2,x:100,y:200,time:1}];
        
        function move(x,y,time) {
           var circles = this.transition().duration(1000*time);
@@ -38,7 +38,7 @@
                                        .attr("fill", "green");
          }
           else {          
-              circles[data[i].agc]=move.call(circles[data[i].agc],
+              circles[data[i].agc]=move.call(circles[data[i].ball],
                                  data[i].x,data[i].y,data[i].time);
         }        
        }
