@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html> 
+  <head> 
+    <meta charset ="utf-8"/ > 
+  </head>
+  <body>
+     <script src="https://d3js.org/d3.v4.min.js"></script>
+     <script type="text/javascript">
+       var width = 960,height = 700;
+ 
+       var svg = d3.select("body")
+                   .append("svg")
+                   .attr("width", width)
+                   .attr("height", height)
+                   .attr("id", "visualization")
+                   .attr("xmlns", "http://www.w3.org/2000/svg");
+ 
+       var data = [{x:100,y:200,time:0},
+                   {x:200,y:600,time:2},
+                   {x:300,y:300,time:5},
+                   {x:100,y:200,time:2}]
+       var circles = svg.append('circle')
+                        .attr('cx', data[0].x)
+                        .attr('cy', data[0].y)
+                        .attr('r', 15)
+                        .attr("fill", "green");
+       function move(x,y,time) {
+          var circles = this.transition().duration(1000*time);
+          circles.attr('cx', x)
+                 .attr('cy', y)
+          return circles;
+       }
+
+       for(i=1;i<data.length;i++){
+        circles=move.call(circles,data[i].x,data[i].y,data[i].time);
+        }        
+  </script>
+</body>
+</html>
